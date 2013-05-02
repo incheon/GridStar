@@ -1,0 +1,242 @@
+/*! gridster.js - v0.1.0 - 2012-10-20
+* http://gridster.net/
+* Copyright (c) 2012 ducksboard; Licensed MIT */
+
+.gridster {
+    position:relative;
+}
+
+.gridster > * {
+    margin: 0 auto;
+    -webkit-transition: height .4s;
+    -moz-transition: height .4s;
+    -o-transition: height .4s;
+    -ms-transition: height .4s;
+    transition: height .4s;
+}
+
+.gridster .gs_w{
+    z-index: 2;
+    position: absolute;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top .3s;
+    -moz-transition: opacity .3s, left .3s, top .3s;
+    -o-transition: opacity .3s, left .3s, top .3s;
+    transition: opacity .3s, left .3s, top .3s;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -moz-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -o-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+}
+
+.gridster .preview-holder {
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    border-color: #fff;
+    opacity: 0.3;
+}
+
+.gridster .player-revert {
+    z-index: 10!important;
+    -webkit-transition: left .3s, top .3s!important;
+    -moz-transition: left .3s, top .3s!important;
+    -o-transition: left .3s, top .3s!important;
+    transition:  left .3s, top .3s!important;
+}
+
+.gridster .dragging {
+    z-index: 10!important;
+    -webkit-transition: all 0s !important;
+    -moz-transition: all 0s !important;
+    -o-transition: all 0s !important;
+    transition: all 0s !important;
+}
+
+.additional_element {
+    margin: 5px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.grid_elements {
+    width: 300px;
+    float: left;
+}
+.grid_elements table {
+    border-collapse: separate;
+    width: 200px;
+    height: 200px;
+}
+.actions_block {
+    padding: 9px;
+    float: right
+}
+
+.grid_elements table td {
+    background-color: #CFCFCF;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+}
+
+.grid_elements table td.hover {
+    background-color: #999;
+}
+
+.grid_elements table td:hover {
+    cursor: pointer;
+}
+
+.layout_block .block_name {
+    cursor: pointer;
+}
+
+.ui-resizable-resizing {
+    z-index: 9999999 !important;
+}
+
+.layout_name_edit {
+    background-color: inherit;
+    background: url( '../media/images/icons/edit_input.gif' );
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    padding: 0px;
+    margin: 0px;
+    padding-left: 14px;
+    border: none;
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    outline: none;
+    width: 90%;
+    font-style: italic;
+    cursor: text !important;
+}
+.layouts_grid .deleteme {
+    float: left;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: absolute;
+	top:0px;
+	right:2px;
+    cursor: pointer;
+    margin: 0px 0px 0px 0px;
+}
+
+.layouts_grid .dragme {
+    float: left;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: absolute;
+	top:-12px;
+	left:-2.5px;
+    cursor: move;
+    margin: 0px 0px 0px 0px;
+}
+
+.layouts_grid .texts {
+    float: left;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: absolute;
+	top:0px;
+	left:0px;
+    cursor:auto ;
+    margin: 0px 0px 0px 0px;
+}
+.layouts_grid .layout_block .info {
+    color: white;
+    font-size: 16px;
+    font-family: Helvetica;
+    padding: 10px;
+}
+/*! gridster.js - v0.1.0 - 2012-10-07
+* http://gridster.net/
+* Copyright (c) 2012 ducksboard; Licensed MIT */
+
+.layouts_grid {
+    position:relative !important;
+    width: 100%;
+    min-height: 100%;
+    float: left;
+}
+
+.tools {
+    position:relative !important;
+    width: 100%;
+    float: left;
+}
+
+.layouts_grid > * {
+    margin: 0 auto;
+    -webkit-transition: height .4s;
+    -moz-transition: height .4s;
+    -o-transition: height .4s;
+    -ms-transition: height .4s;
+    transition: height .4s;
+}
+
+.layouts_grid ul {
+    list-style-type: none;
+    min-height: 660px;
+}
+.layouts_grid .gs_w{
+    z-index: 2;
+    position: absolute;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top .3s;
+    -moz-transition: opacity .3s, left .3s, top .3s;
+    -o-transition: opacity .3s, left .3s, top .3s;
+    transition: opacity .3s, left .3s, top .3s;
+}
+
+.ready .gs_w:not(.preview-holder) {
+    -webkit-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -moz-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    -o-transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+    transition: opacity .3s, left .3s, top .3s, width .3s, height .3s;
+}
+
+.layouts_grid .preview-holder {
+    z-index: 1;
+    position: absolute;
+    background-color: inherit;
+    border: none;
+    opacity: 0.3;
+}
+
+.layouts_grid .player-revert {
+    z-index: 10!important;
+    -webkit-transition: left .3s, top .3s!important;
+    -moz-transition: left .3s, top .3s!important;
+    -o-transition: left .3s, top .3s!important;
+    transition:  left .3s, top .3s!important;
+}
+
+.layouts_grid .dragging {
+    z-index: 10!important;
+    -webkit-transition: all 0s !important;
+    -moz-transition: all 0s !important;
+    -o-transition: all 0s !important;
+    transition: all 0s !important;
+}
+
+/* Uncomment this if you set helper : "clone" in draggable options */
+/*.gridster .player {
+  opacity:0;
+}*/
