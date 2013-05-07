@@ -75,8 +75,6 @@ $(function() {
 	});
 //インクリメント
 
-i=<?php echo count($d); ?>;
-
 	$("#add").click(function(){
 		var tex = $('#my-form [name=my-text]').val();
 		var url = $('#URL [name=my-url]').val();
@@ -107,7 +105,7 @@ i=<?php echo count($d); ?>;
     	var jsonString =JSON.stringify(gridster.serialize());
     	//if (confirm("保存しますか？")==true)
     	//OKならTOPページにジャンプさせる
-    	var String ="http://localhost/net3/gridstr.php";
+    	var String ="http://localhost/gridstar/gridstr.php";
     	String+="?data=";
     	String+=jsonString;
 
