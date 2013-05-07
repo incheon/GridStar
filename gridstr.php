@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
 	<script type="text/javascript" src="dist/jquery.gridster.js"></script>
 	<script type="text/javascript" src="libs/jquery/jquery-ui.js"></script>
-	<script type="text/javascript" src="./gridstr.js"></script>
+
 
 
   <style type="text/css">
@@ -358,7 +358,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 </div>
 </div>
 
-
+	<script type="text/javascript" src="./gridstr.js"></script>
 
 </body>
 </html>
