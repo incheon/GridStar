@@ -13,6 +13,9 @@
 　　　　 background-position:100% auto;
 		}
 
+
+テスト
+
 /* CSS部分*/
 
 img.bg {
