@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="libs/jquery/jquery.js"></script>
 	<script type="text/javascript" src="dist/jquery.gridster.js"></script>
 	<script type="text/javascript" src="libs/jquery/jquery-ui.js"></script>
-
+	<script type="text/javascript" src="gridstr.js"></script>
 
 
   <style type="text/css">
@@ -92,7 +92,9 @@ if(empty($_POST["name"])||empty($_POST["pass"])){
 //MySQLに接続
 require_once("../mysqlpass.php");
 try{
+
  	$pdo = new PDO("mysql:host=".$my_host."; dbname=".$my_dbname, $my_user, $my_pass,
+
 	array(
 		PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8'"
 	));
@@ -361,7 +363,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 </div>
 </div>
 
-	<script type="text/javascript" src="./gridstr.js"></script>
+
 
 </body>
 </html>
