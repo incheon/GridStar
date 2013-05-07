@@ -88,8 +88,9 @@ if(empty($_POST["name"])||empty($_POST["pass"])){
 
 
 //MySQLに接続
+require_once("../mysqlpass.php");
 try{
-	$pdo=new PDO("mysql:host=localhost;dbname=nettest","root","3141592",
+ 	$pdo = new PDO("mysql:host=".$my_host."; dbname=".$my_dbname, $my_user, $my_pass,
 	array(
 		PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8'"
 	));
