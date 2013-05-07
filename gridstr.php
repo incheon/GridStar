@@ -12,6 +12,9 @@
    BODY {background-repeat:no-repeat;
 　　　　 background-position:100% auto;
 		}
+
+/* CSS部分*/
+
 img.bg {
   /* Set rules to fill background */
   min-height: 100%;
@@ -54,6 +57,8 @@ text-decoration: none;
   </style>
 
 
+
+
 <title>GridSter</title>
 </head>
 
@@ -67,18 +72,20 @@ session_name("logintest");
 session_start();
 
 
-
+//ログイン関連　login.phpからの情報(ユーザー名、パス)を受け取る
 if(empty($_POST["name"])||empty($_POST["pass"])){
 	//echo "ログインデータを受け取っていません";
 	
 }else{
-	//echo "ログインデータを受け取りました";
+	
+	//受け取った情報をクッキーに保存。ユーザー管理のため
 	$_SESSION["logintest_user"]=$_POST["name"];
 	$_SESSION["logintest_name"]=$_POST["name"];
 	$_SESSION["logintest_pass"]=$_POST["pass"];
 }
-//echo $_SESSION["logintest_user"];
 
+
+//MySQLに接続
 try{
 	$pdo=new PDO("mysql:host=localhost;dbname=nettest","root","3141592",
 	array(
@@ -92,6 +99,7 @@ try{
 ?>
 <?php
 
+//背景読み込み部分
 $sql="SELECT background FROM user WHERE name='".$_SESSION["logintest_name"]."' AND pass='".$_SESSION["logintest_pass"]."'";
 $result=$pdo->query($sql);
 
@@ -115,6 +123,7 @@ while($row=$result->fetch(PDO::FETCH_ASSOC)){
 
 <?php
 
+//この文は意味のない文の可能性あり、、、
 $sql="SELECT name FROM user WHERE name='".$_SESSION["logintest_name"]."' AND pass='".$_SESSION["logintest_pass"]."'";
 $result=$pdo->query($sql);
 
@@ -136,11 +145,8 @@ if($uname!=null){
 }
 
 
-//echo '<hr><a href="./login.php">ログアウト</a>';
 
-//echo "<hr>セッションID=".session_id();
-
-//位置情報保存
+//MySQLから位置情報を読み出す部分
 
 if(empty($_GET['data'])){
 	//echo "<br>"."なにもありません"."<br>";
@@ -157,8 +163,8 @@ if(empty($_GET['data'])){
 	$data=$_GET['data'];
 }
 
-//echo $data."<br>";
 
+//読み出したデータを使えるように分解する　これの要素を分解⇒ex. {'x':1,'y':1,'width':1,'height':1,'id':1','name':null},{'x':1,'y':1,'width':1,'height':1,'id':2','name':null}]
 $array=explode('}', $data);
 
 $i=1;
@@ -198,39 +204,12 @@ $idnum=count($d);
 
 ?>
 
+<!--　保存、追加、ログアウトボタン表示部分　-->
+
 <table>
 	<tr>
-		<!--
-		<td  style="padding: 15px 0px 0px 15px;">
-			<form id="my-form">
-  				<input type="text" name="my-text" value="タイトル" style="width:200px;height:40px;"/>
-			</form>
-		</td>
-		<td style="padding: 15px 0px 0px 5px;">
-			<form id="URL">
-  				<input type="text" name="my-url" value="リンクURL" style="width:200px;height:40px;" />
-			</form>
-		</td>
-		<td style="padding: 15px 4px 0px 5px;">
-			<form id="pic">
-  				<input type="text" name="my-pic" value="画像URL" style="width:200px;height:40px;" />
-  				
-			</form>
-		</td>
 		
-		<td style="padding: 15px 4px 0px 5px;">
-			<form name="detail_form" action="cart.php" method="post">
-				<input type="hidden" name="cmd" value="add_cart"/>
-			</form>
-		</td>
-		
-		<td>
-			<div class="alignC">
-				<button style="background-color: orange;color:white;height:40px;" class="btn btn-primary" id="delete">削除</button>
-			</div>
-		</td>
-		<td>
-		-->
+
 		<td>
 			<div class="alignC">
 				<button style="background-color: green;color:white;" class="btn btn-primary" id="jump">保存</button>
@@ -265,12 +244,13 @@ $idnum=count($d);
 
 <?php
 
-//echo $idnum;
+
 $num=$idnum-1;
 
 $check=0;
 
 
+//入力された画像URL、リンクURLをDBに保存する部分
 
 if(empty($_POST["picURL"])||empty($_POST["linkURL"])){
 }else{
@@ -304,7 +284,7 @@ if(empty($_POST["picURL"])||empty($_POST["linkURL"])){
 
 
 
-
+//位置情報をDBに保存する部分
 $sql="UPDATE user SET data="."'".$data."'"."WHERE name=".$_SESSION["logintest_name"];
 //echo $sql;
 $result =$pdo->query($sql);
@@ -325,6 +305,7 @@ echo"<ul>";
 $id=1;
 
 
+//アイコン表示部分。DB内の画像URL、リンクURLを読み出して、順番に表示していく
 for($i2=1;$i2<count($d);$i2++){
 
 
@@ -349,6 +330,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 	$link=$row[$kari];
 }
 
+		//ここが表示する際のコアの文
 
 		echo "
 		<li class='layout_block' data-id='".$id."' data-row='".$d[$i2][2]."' data-col='".$d[$i2][1]."' data-sizex='".$d[$i2][3]."' data-sizey='".$d[$i2][4]."' style='background-color: #D24726;'>
@@ -376,8 +358,10 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
 
 
+<!--　ここからJS　-->
 
 	<script type="text/javascript">
+//タイルサイズ指定
 var layout;
 var grid_size = 100;
 var grid_margin = 5;
@@ -385,6 +369,8 @@ var block_params = {
     max_width: 6,
     max_height: 6
 };
+//なぞ。かわいさんHELP
+
 $(function() {
 
     layout = $('.layouts_grid ul').gridster({
@@ -462,6 +448,8 @@ i=<?php echo count($d); ?>;
 		i++;
 		
     });
+
+    //位置情報を送る部分「追加」ボタンクリックに反応する
     $("#add").click(function(){
     	
     	var jsonString =JSON.stringify(gridster.serialize());
@@ -476,7 +464,7 @@ i=<?php echo count($d); ?>;
     
     });
     
-    
+    //位置情報を送る部分「保存」ボタンクリックに反応する
     $("#jump").click(function(){
     
     	var jsonString =JSON.stringify(gridster.serialize());
@@ -493,6 +481,7 @@ i=<?php echo count($d); ?>;
     // １秒間隔で繰り返し
 setInterval ( 'clocknow()',1000 );
  
+ //時計表示部分
 function clocknow(){
     weeks = new Array("Sun","Mon","Thu","Wed","Thr","Fri","Sat") ;
     now = new Date() ;
