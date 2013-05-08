@@ -218,29 +218,13 @@ $idnum=count($d);
 
 
 		<td>
-			<div class="alignC">
-				<button style="background-color: green;color:white;" class="btn btn-primary" id="jump">保存</button>
-			</div>
-
-		</td>
-		<td style="padding-top:16px">
-		<?php
-			echo "<form action=gridstr.php?data=".$data.",{'x':1,'y':1,'width':1,'height':1,'id':".count($d)."','name':null}] method='post'>";
-		?>
-			<input type="text" name="linkURL" value="リンクURL">
-			<input type="text" name="picURL" value="画像URL">
-			<input type="submit" value="追加" id="aaa" style="background-color: orange;color:white;">
-			</form>
-		</td>
-
-		<td>
 			<form method="post" action="./gridstr_edit.php">
 
 				<?php
 				echo "<input type='hidden' name='name' value=".$_SESSION["logintest_name"].">";
 				echo "<input type='hidden' name='pass' value=".$_SESSION["logintest_pass"].">";
 				?>
-				<p><input type="submit" value="送信する"></p>
+				<p><input type="submit" value="編集"></p>
 
 			</form>
 
