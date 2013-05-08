@@ -233,6 +233,19 @@ $idnum=count($d);
 			</form>
 		</td>
 
+		<td>
+			<form method="post" action="./gridstr_edit.php">
+
+				<?php
+				echo "<input type='hidden' name='name' value=".$_SESSION["logintest_name"].">";
+				echo "<input type='hidden' name='pass' value=".$_SESSION["logintest_pass"].">";
+				?>
+				<p><input type="submit" value="送信する"></p>
+
+			</form>
+
+		</td>
+
 
 	</tr>
 </table>
