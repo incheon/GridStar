@@ -60,7 +60,7 @@ $(function() {
     var gridster = $(".layouts_grid ul").gridster().data('gridster');
 
     //remove box
-    $(".deleteme").click(function() {
+    $(".deleteme").live('click',function() {
         $(this).parents().eq(2).addClass("activ");
         gridster.remove_widget($('.activ'));
         $(this).parents().eq(2).removeClass("activ");
